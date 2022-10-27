@@ -29,9 +29,9 @@ loginUser(): void {
       localStorage.setItem('user', JSON.stringify(result.user));
       localStorage.setItem('token', result.token)
      this.dialogRef.close();
-     this.router.navigate(['movies']);
-
      console.log(result);
+     
+     this.router.navigate(['movies']);
 
      this.snackBar.open('login successful!', 'OK', {
       duration: 2000
