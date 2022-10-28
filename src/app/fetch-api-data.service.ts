@@ -14,8 +14,7 @@ const apiUrl = 'https://gracean-movies.herokuapp.com/';
 export class FetchApiDataService {
  // Inject the HttpClient module to the constructor params
  // This will provide HttpClient to the entire class, making it available via this.http
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   // Non-typed response extraction
   private extractResponseData(res: Object): any {
@@ -69,7 +68,7 @@ export class FetchApiDataService {
   }
 
   //api call for single director by name
-  public getDirector(directorName: String): Observable<any> {
+  public getDirector(directorName: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'directors/' + directorName, {
       headers: new HttpHeaders(
@@ -91,7 +90,6 @@ export class FetchApiDataService {
           Authorization: 'Bearer ' + token,
         })
       }).pipe(
-        map(this.extractResponseData),
         catchError(this.handleError)
       );
   }
@@ -106,6 +104,7 @@ export class FetchApiDataService {
           Authorization: 'Bearer ' + token,
         })
       }).pipe(
+        map(this.extractResponseData),
         catchError(this.handleError)
       );
   }

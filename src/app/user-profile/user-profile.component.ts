@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
   user: any = {};
-  favorites: any[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -19,13 +18,15 @@ export class UserProfileComponent implements OnInit {
     public router: Router) { }
 
   ngOnInit(): void {
-    this.getUser();
+    this.getUserData();
   }
 
-  getUser(): void {
+  getUserData(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
      this.user = resp;
      console.log(this.user);
+
+     return this.user;
     });
   }
 
