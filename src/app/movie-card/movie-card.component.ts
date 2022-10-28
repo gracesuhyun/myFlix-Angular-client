@@ -3,7 +3,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { MatDialog  } from '@angular/material/dialog';
 import { GenreCardComponent } from '../genre-card/genre-card.component';
-
+import { DirectorCardComponent } from '../director-card/director-card.component';
 
 
 @Component({
@@ -29,20 +29,29 @@ export class MovieCardComponent implements OnInit {
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
         this.movies = resp;
+        console.log(resp);
         return this.movies;
     });
   }
 
-  openGenreDetails(name: string, description: string): void {
-    console.log(this.movies.Genre);
+  openGenreDetails(genre: Object): void {
     this.dialog.open(GenreCardComponent, {
       data: {
-        Name: name,
-        Description: description,
+        Genre: genre
       },
       width: '500px',
     });
   }
+
+  openDirectorDetails(director: Object): void {
+    this.dialog.open(DirectorCardComponent, {
+      data: {
+        Director: director
+      },
+      width: '500px',
+    });
+  }
+
 
   openMovies(): void {
     this.router.navigate(['movies']);

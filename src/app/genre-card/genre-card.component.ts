@@ -14,8 +14,8 @@ export class GenreCardComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public data: { 
       Genre: { 
-        Name: String, 
-        Description: String 
+        name: String, 
+        description: String 
       } 
     }) { }
 

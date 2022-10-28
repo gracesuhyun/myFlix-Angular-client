@@ -90,6 +90,7 @@ export class FetchApiDataService {
           Authorization: 'Bearer ' + token,
         })
       }).pipe(
+        map(this.extractResponseData),
         catchError(this.handleError)
       );
   }

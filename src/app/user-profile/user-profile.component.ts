@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { EditUserProfileComponent } from '../edit-user-profile/edit-user-profile.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  user: any = {};
+  user: any = localStorage.getItem('user');
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -24,7 +24,7 @@ export class UserProfileComponent implements OnInit {
   getUserData(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
      this.user = resp;
-     console.log(this.user);
+     console.log(resp);
 
      return this.user;
     });

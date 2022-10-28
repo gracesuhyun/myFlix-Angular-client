@@ -1,8 +1,11 @@
 <mat-card class="genre-dialog">
-    <mat-card-title class="genre-dialog-title">{{ data.Genre.Name }}</mat-card-title>
+    <mat-card-title class="genre-dialog-title">{{ data.Genre.name }}</mat-card-title>
     <br />
+
     <mat-dialog-content class="genre-dialog-content">
-      <b>Description: </b>{{ data.Genre.Description }}
+      <u>Description: </u>
+      <br/>
+      {{ data.Genre.description }}
     </mat-dialog-content>
     <mat-card-actions class="genre-actions">
       <button
