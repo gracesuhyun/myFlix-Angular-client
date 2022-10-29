@@ -16,6 +16,7 @@ export class MovieCardComponent implements OnInit {
 
   user: any = localStorage.getItem('user');
   movies: any = [];
+  favMovies: any = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -24,6 +25,7 @@ export class MovieCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
+    this.getFavoriteMovies();
   }
   
   getMovies(): void {
@@ -33,6 +35,32 @@ export class MovieCardComponent implements OnInit {
         return this.movies;
     });
   }
+
+  getFavoriteMovies(): void {
+    this.fetchApiData.getUser().subscribe((resp: any) => {
+      this.favMovies = resp.FavoriteMovies;
+      return this.movies;
+    })
+  }
+
+  addFavoriteMovie(movieId: String): void {
+    console.log(movieId);
+    this.fetchApiData.addFavoriteMovie(movieId).subscribe((resp: any) => {
+      console.log(resp);
+      this.ngOnInit();
+    })
+  }
+
+  deleteFavoriteMovie(movieId: String): void {
+    console.log(movieId);
+    this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp: any) => {
+      this.ngOnInit();
+    })
+  }
+
+  isFavorite(id: Number): Boolean {
+    return this.favMovies.includes(id);
+}
 
   openGenreDetails(genre: Object): void {
     this.dialog.open(GenreCardComponent, {

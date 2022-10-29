@@ -26,10 +26,10 @@ ngOnInit(): void {
 
 loginUser(): void {
     this.fetchApiData.userLogin(this.userDetails).subscribe((result) => {
-      localStorage.setItem('user', JSON.stringify(result.user));
-      localStorage.setItem('token', result.token)
+      localStorage.setItem('user', result.user.Username);
+      localStorage.setItem('token', result.token);
      this.dialogRef.close();
-     console.log(result);
+     console.log(result.user);
      
      this.router.navigate(['movies']);
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { EditUserProfileComponent } from '../edit-user-profile/edit-user-profile.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,7 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  user: any = localStorage.getItem('user');
+  user: any = {};
+  movies: any = [];
+  favMovies: any = [];
+
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -19,12 +22,15 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserData();
+    this.getMovies();
+    this.getFavorites();
   }
 
   getUserData(): void {
-    this.fetchApiData.getUser().subscribe((resp: any) => {
-     this.user = resp;
-     console.log(resp);
+    this.fetchApiData.getUser().subscribe((result: any) => {
+      localStorage.getItem('user');
+      this.user = result;
+      console.log(result);
 
      return this.user;
     });
@@ -54,6 +60,28 @@ export class UserProfileComponent implements OnInit {
       } else {
         window.location.reload();
       }
+    }
+
+    getMovies(): void {
+      this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+          this.movies = resp;
+          console.log(resp);
+          return this.movies;
+      });
+    }
+
+    getFavorites(): void {
+      this.fetchApiData.getUser().subscribe((resp: any) => {
+          this.favMovies = resp.FavoriteMovies;
+          return this.favMovies;
+      });
+    }
+
+    deleteFavoriteMovie(movieId: String): void {
+      console.log(movieId);
+      this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp: any) => {
+        this.ngOnInit();
+      })
     }
 
     openMovies(): void {

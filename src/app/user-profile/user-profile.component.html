@@ -12,9 +12,25 @@
     </mat-card-header>
 
     <mat-card-content class="user-profile-card-content">
-      <p><b>Username:</b> {{ user }}</p>
+      <p><b>Username:</b> {{ user.Username }}</p>
       <p><b>Email:</b> {{ user.Email }}</p>
       <p><b>Birthday:</b> {{ user.Birthday | date }}</p>
     </mat-card-content>
   </mat-card>
+
+  <div class="favorites-header">
+    <h2>Favorite Movies List:</h2>
+  </div>
+
+  <div class="favorite-movies-container">
+    <div class="card-container" *ngFor="let movie of movies;">
+      <div class="favorite-movies-card" *ngIf="favMovies.includes(movie._id)">
+          <h3 class="movie-title">{{movie.Title}}</h3>
+          <img src={{movie.ImagePath}} alt= {{movie.Title}} height="210"/>
+          <button class="favorite" mat-button (click)="deleteFavoriteMovie(movie._id)" color="primary">
+              <mat-icon>favorite</mat-icon>
+          </button>
+      </div>
+    </div>
+  </div>
 </div>

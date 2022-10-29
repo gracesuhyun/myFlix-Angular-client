@@ -1,12 +1,12 @@
 
     <mat-toolbar color="primary"><span>myFlix</span><span class="spacer"></span>
         <button mat-button (click)="openMovies()" color="secondary">Home</button>
-        <button mat-button (click)="openProfile()" color="secondary">Profile</button>
+        <button mat-button (click)="openProfile()" color="secondary">{{user}}</button>
         <button mat-button (click)="logout()" color="secondary">Logout</button>
     </mat-toolbar>
 
-<div style="display: flex;">
-    <mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto;">
+<div class="movies-container">
+    <mat-card *ngFor="let movie of movies;">
 
         <mat-card-header>
         <mat-card-title>{{movie.Title}}</mat-card-title>
@@ -32,13 +32,15 @@
                 Director
             </button>
 
-            <!-- <button
-                mat-button
-                color="primary"
-            >
-                Synopsis
-            </button> -->
-            <mat-icon>favorite_border</mat-icon>
+            <button class="favorite" mat-button *ngIf="!isFavorite(movie._id)" (click)="addFavoriteMovie(movie._id)"
+                color="primary">
+                <mat-icon>favorite_border</mat-icon>
+            </button>
+            <button class="favorite" mat-button *ngIf="isFavorite(movie._id)" (click)="deleteFavoriteMovie(movie._id)"
+                color="primary">
+                <mat-icon>favorite</mat-icon>
+            </button>
+
         </mat-card-actions>
     </mat-card>
 </div>
