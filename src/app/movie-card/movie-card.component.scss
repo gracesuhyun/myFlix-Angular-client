@@ -2,6 +2,10 @@
     flex: 1 1 auto;
 }
 
+span {
+    cursor: pointer;
+}
+
 .movies-container {
     display: flex;
     overflow-y: hidden;

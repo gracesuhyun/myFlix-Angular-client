@@ -1,8 +1,7 @@
 <div class="user-profile-page">
 
-  <mat-toolbar color="primary"><span>myFlix</span><span class="spacer"></span>
-    <button mat-button (click)="openMovies()" color="secondary">Home</button>
-    <button mat-button (click)="openProfile()" color="secondary">Profile</button>
+  <mat-toolbar color="primary"><span (click)="openMovies()">myFlix</span><span class="spacer"></span>
+    <button mat-button (click)="openProfile()" color="secondary">{{user.Username}}'s Profile</button>
     <button mat-button (click)="logout()" color="secondary">Logout</button>
   </mat-toolbar>
 
@@ -19,14 +18,15 @@
   </mat-card>
 
   <div class="favorites-header">
-    <h2>Favorite Movies List:</h2>
+    <h2>Favorite Movies List</h2>
   </div>
 
   <div class="favorite-movies-container">
     <div class="card-container" *ngFor="let movie of movies;">
       <div class="favorite-movies-card" *ngIf="favMovies.includes(movie._id)">
           <h3 class="movie-title">{{movie.Title}}</h3>
-          <img src={{movie.ImagePath}} alt= {{movie.Title}} height="210"/>
+          <img src={{movie.ImagePath}} alt= {{movie.Title}} height="210"/> 
+          <br/>
           <button class="favorite" mat-button (click)="deleteFavoriteMovie(movie._id)" color="primary">
               <mat-icon>favorite</mat-icon>
           </button>

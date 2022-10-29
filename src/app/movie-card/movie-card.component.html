@@ -1,7 +1,6 @@
 
-    <mat-toolbar color="primary"><span>myFlix</span><span class="spacer"></span>
-        <button mat-button (click)="openMovies()" color="secondary">Home</button>
-        <button mat-button (click)="openProfile()" color="secondary">{{user}}</button>
+    <mat-toolbar color="primary"><span (click)="openMovies()">myFlix</span><span class="spacer"></span>
+        <button mat-button (click)="openProfile()" color="secondary">{{user}}'s Profile</button>
         <button mat-button (click)="logout()" color="secondary">Logout</button>
     </mat-toolbar>
 
