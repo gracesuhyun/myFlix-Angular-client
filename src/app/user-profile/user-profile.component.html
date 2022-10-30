@@ -15,6 +15,21 @@
       <p><b>Email:</b> {{ user.Email }}</p>
       <p><b>Birthday:</b> {{ user.Birthday | date }}</p>
     </mat-card-content>
+
+    <mat-card-actions class="user-profile-actions">
+      <button
+        mat-raised-button
+        (click)="openEditProfileDialog()"
+        color="primary"
+      >
+        <mat-icon>edit</mat-icon>
+        Edit Profile
+      </button>
+      <button mat-raised-button (click)="deleteProfile()" color="warn">
+        <mat-icon>delete_forever</mat-icon>
+        Delete Profile
+      </button>
+    </mat-card-actions>
   </mat-card>
 
   <div class="favorites-header">

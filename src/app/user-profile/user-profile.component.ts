@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { EditUserProfileComponent } from '../edit-user-profile/edit-user-profile.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,6 +19,7 @@ export class UserProfileComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
+    public dialog: MatDialog,
     public router: Router) { }
 
   ngOnInit(): void {
@@ -36,11 +38,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // openEditProfileDialog(): void {
-  //   this.dialog.open(EditUserProfileComponent, {
-  //     width: '300px',
-  //   });
-  // }
+  openEditProfileDialog(): void {
+    this.dialog.open(EditUserProfileComponent, {
+      width: '300px',
+    });
+  }
 
   deleteProfile(): void {
     if (
@@ -48,19 +50,18 @@ export class UserProfileComponent implements OnInit {
         'Are you sure you want to delete your account?'
       )
     ) {
-      this.fetchApiData.deleteUser(this.user).subscribe(() => {
-        console.log('Profile successfully deleted');
-        localStorage.clear();
-        this.router.navigate(['welcome']);
-
-        this.snackBar.open('Profile Deleted', 'OK', {
-          duration: 2000,
-        });
+      this.router.navigate(['welcome']).then(() => {
+        this.snackBar.open(
+          'You have successfully deleted your account!','OK', {
+            duration: 2000,
+          }
+        );
       });
-      } else {
-        window.location.reload();
-      }
+      this.fetchApiData.deleteUser().subscribe((result) => {
+        localStorage.clear();
+      });
     }
+  }
 
     getMovies(): void {
       this.fetchApiData.getAllMovies().subscribe((resp: any) => {
@@ -83,6 +84,8 @@ export class UserProfileComponent implements OnInit {
         this.ngOnInit();
       })
     }
+
+  
 
     openMovies(): void {
       this.router.navigate(['movies']);
