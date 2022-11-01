@@ -28,6 +28,9 @@ export class UserProfileComponent implements OnInit {
     this.getFavorites();
   }
 
+  /**
+   * fetch user details from database using getUser in fetch-api-data
+   */
   getUserData(): void {
     this.fetchApiData.getUser().subscribe((result: any) => {
       localStorage.getItem('user');
@@ -38,12 +41,18 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * open profile editing component with dialog
+   */
   openEditProfileDialog(): void {
     this.dialog.open(EditUserProfileComponent, {
       width: '300px',
     });
   }
 
+  /**
+   * delete user from database using deleteUser in fetch-api-data
+   */
   deleteProfile(): void {
     if (
       confirm(
@@ -63,27 +72,37 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-    getMovies(): void {
-      this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-          this.movies = resp;
-          console.log(resp);
-          return this.movies;
-      });
-    }
+  /**
+   * fetch movies data for users favorites list
+   */
+  getMovies(): void {
+    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+        this.movies = resp;
+        console.log(resp);
+        return this.movies;
+    });
+  }
 
-    getFavorites(): void {
-      this.fetchApiData.getUser().subscribe((resp: any) => {
-          this.favMovies = resp.FavoriteMovies;
-          return this.favMovies;
-      });
-    }
+  /**
+   * fetches user details and sets it to this component's local 'favMovies'
+   */
+  getFavorites(): void {
+    this.fetchApiData.getUser().subscribe((resp: any) => {
+        this.favMovies = resp.FavoriteMovies;
+        return this.favMovies;
+    });
+  }
 
-    deleteFavoriteMovie(movieId: String): void {
-      console.log(movieId);
-      this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp: any) => {
-        this.ngOnInit();
-      })
-    }
+    /**
+   * deletes chosen movie from user's favorites list
+   * @param movieId - movie's ID from database
+   */
+  deleteFavoriteMovie(movieId: String): void {
+    console.log(movieId);
+    this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp: any) => {
+      this.ngOnInit();
+    })
+  }
 
   
 

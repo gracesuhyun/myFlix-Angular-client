@@ -24,6 +24,9 @@ constructor(
 ngOnInit(): void {
 }
 
+/**
+ * posts userDetails and sets them into localStorage in order to gain access to API
+ */
 loginUser(): void {
     this.fetchApiData.userLogin(this.userDetails).subscribe((result) => {
       localStorage.setItem('user', result.user.Username);

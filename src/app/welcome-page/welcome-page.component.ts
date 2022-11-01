@@ -15,25 +15,22 @@ export class WelcomePageComponent {
 
   constructor(public dialog: MatDialog) { }
 
-  // This is the function that will open the dialog when the signup button is clicked  
+  /**
+   * This is the function that will open the dialog when the signup button is clicked  
+   */
   openUserRegistrationDialog(): void {
-      this.dialog.open(UserRegistrationFormComponent, {
-  // Assigning the dialog a width
+    this.dialog.open(UserRegistrationFormComponent, {
       width: '280px'
-      });
-    }
+    });
+  }
 
-    // This is the function that will open the dialog when the login button is clicked  
+    /**
+     * This is the function that will open the dialog when the login button is clicked  
+     */
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
-  // Assigning the dialog a width
-    width: '280px'
+      width: '280px'
     });
   }
 
-  openMoviesDialog(): void {
-    this.dialog.open(MovieCardComponent, {
-      width: '500px'
-    });
-  }
 }

@@ -22,6 +22,9 @@ export class EditUserProfileComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * posts new data input by user into datbuase using editUser from fetch-api-data
+   */
   editUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe((result) => {
       this.dialogRef.close();

@@ -28,6 +28,9 @@ export class MovieCardComponent implements OnInit {
     this.getFavoriteMovies();
   }
   
+  /**
+   * fetch movie data input and sets it as 'movies' variable
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
         this.movies = resp;
@@ -36,6 +39,9 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * fetches user details and sets it to this component's local 'favMovies'
+   */
   getFavoriteMovies(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.favMovies = resp.FavoriteMovies;
@@ -43,6 +49,10 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  /**
+   * adds chosen movie to user's favorites list
+   * @param movieId - movie's ID from database
+   */
   addFavoriteMovie(movieId: String): void {
     console.log(movieId);
     this.fetchApiData.addFavoriteMovie(movieId).subscribe((resp: any) => {
@@ -51,6 +61,10 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  /**
+   * deletes chosen movie from user's favorites list
+   * @param movieId - movie's ID from database
+   */
   deleteFavoriteMovie(movieId: String): void {
     console.log(movieId);
     this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp: any) => {
@@ -58,10 +72,19 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  /**
+   * needed to check if movie ID is in user's favorites list
+   * @param id - movie's ID
+   * @returns if true then fill in heart, if false then leave heart empty
+   */
   isFavorite(id: Number): Boolean {
     return this.favMovies.includes(id);
-}
+  }
 
+  /**
+   * open genre component as dialog
+   * @param genre - genre details from database
+   */
   openGenreDetails(genre: Object): void {
     this.dialog.open(GenreCardComponent, {
       data: {
@@ -71,6 +94,10 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * open director component as dialog
+   * @param director - director details from database
+   */
   openDirectorDetails(director: Object): void {
     this.dialog.open(DirectorCardComponent, {
       data: {
