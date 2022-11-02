@@ -49,9 +49,7 @@ This project was built with [Angular CLI](https://github.com/angular/angular-cli
 
 https://gracesuhyun.github.io/myFlix-Angular-client/welcome
 
-
-
-
+## Additional Information
 
 ### Development server
 
