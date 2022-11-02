@@ -2,7 +2,7 @@
 
 This project was built with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6. It is the client-side for an application called myFlix based on its existing server-side code (REST API and database).
 
-<img src="img/angular-movie-app.png" width="700" alt="App demonstration">
+<img src="img/angular-movie-app.gif" width="700" alt="App demonstration">
 
 ## Key Features
 - Your app should display a welcome view where users will be able to either log in or register an
