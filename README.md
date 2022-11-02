@@ -5,8 +5,7 @@ This project was built with [Angular CLI](https://github.com/angular/angular-cli
 <img src="img/angular-movie-app.gif" width="700" alt="App demonstration">
 
 ## Key Features
-- Your app should display a welcome view where users will be able to either log in or register an
--ccount.
+- Your app should display a welcome view where users will be able to either log in or register an account.
 - Once authenticated, the user should now view all movies.
 - Upon clicking on a particular movie, users will be taken to a single movie view, where additional movie details will be displayed. The single movie view will contain the following additional features:
 1. A button that when clicked takes a user to the director view, where details about the director of that particular movie will be displayed.
